@@ -1,2 +1,87 @@
 # iot-wpf-2025
-IoT ê°œë°œìž WPF ë¦¬í¬ì§€í† ë¦¬
+IoT °³¹ßÀÚ WPF ¸®Æ÷ÁöÅä¸®
+
+## 1ÀÏÂ÷
+### WPFÀÇ °³¿ä
+- Windows Presentation Foundation
+    - WinFormsÀÇ µðÀÚÀÎÀÇ ¹Ì¾àÇÑ ºÎºÐ, ¼Óµµ°³¼±, °³¹ß°ú µðÀÚÀÎÀÇ ºÐ¸® °³¼±ÇÏ°íÀÚ MS ÇÁ·¹ÀÓ¿öÅ©
+    - È­¸éµðÀÚÀÎÀ» XML±â¹ÝÀÇ xaml
+
+### WPF DB ¹ÙÀÎµù ¿¬½À
+1. ÇÁ·ÎÁ§Æ® »ý¼º - [µðÀÚÀÎ](./day01/Day01Wpf/WpfBasicApp01/MainWindow.xaml), [¼Ò½º](./day01/Day01Wpf/WpfBasicApp01/MainWindow.xaml.cs)
+2. NuGetÆÐÅ°Áö¿¡¼­ `MahApps.Metro`(µðÀÚÀÎ) ¶óÀÌºê·¯¸® ¼³Ä¡
+3. µðÀÚÀÎ ¿µ¿ª
+    - App.xaml
+    - MainWindow.xmal
+    - MainWindow.xaml.csÀÇ ±â¹Ý Å¬·¡½º¸¦ º¯°æÇÏ´Â °Í - µðÀÚÀÎ
+4. UI ±¸Çö
+5. DB¿¬°á »çÀüÁØºñ
+    - NuGetÆÐÅ°Áö¿¡¼­ `MSQL.Data` ¶óÀÌºê·¯¸® ¼³Ä¡
+6. DB¿¬°á
+    1. DB¿¬°á¹®ÀÚ¿­(Connection String) : DBÁ¾·ù¸¶´Ù ¿¬°á¹®ÀÚ¿­ Æ÷¸ËÀÌ ´Ù¸£°í ¹«Á¶°Ç ÀÖ¾î¾ßÇÔ
+    2. Äõ¸® : ½ÇÇàÇÒ Äõ¸®(º¸Åë SELECT, INSERT, UPDATE, DELETE)
+    3. µ¥ÀÌÅÍ¸¦ ´ãÀ» °´Ã¼ : ¸®½ºÆ® Çü½Ä
+    4. DB¿¬°á°´Ã¼(`SqlConnection`) : ¿¬°á ¹®ÀÚ¿­À» Ã³¸®ÇÏ´Â °´Ã¼. DB¿¬°á, ²÷±â, ¿¬°áÈ®ÀÎ ...
+        - DB Á¾·ùº°·Î MySqlConnection, SqlConnection ,OracleConnection ...
+    5. DB¸í·É°´Ã¼(`SqlCommand`) : Äõ¸®¸¦ ÄÁÆ®·ÑÇÏ´Â °´Ã¼, »ý¼º ½Ã Äõ¸®¿Í ¿¬°á°´Ã¼
+        - ExecuteReader() : SELECT¹® ½ÇÇà, °á°ú µ¥ÀÌÅÍ¸¦ ´ã´Â ¸Þ¼­µå
+        - ExecuteScalar() : SELECT¹® Áß count() µî ÇÔ¼ö·Î 1row/1column µ¥ÀÌÅÍ¸¸ °¡Á®¿À´Â ¸Þ¼­µå
+        - ExecuteNonQuery() : INSERT, UPDATE, DELETE¹®°ú °°ÀÌ transactionÀÌ ¹ß»ýÇÏ´Â Äõ¸®½ÇÇà »ç¿ë ¸Þ¼­µå
+    6. DBµ¥ÀÌÅÍ¾î´ðÅÍ(`SqlDataAdapter`) : ¿¬°áÀÌÈÄ µ¥ÀÌÅÍÃ³¸®¸¦ ½±°Ô µµ¿ÍÁÖ´Â °´Ã¼
+        - DB¸í·É°´Ã¼Ã³·³ Äõ¸®¸¦ Á÷Á¢½ÇÇàÇÒ ÇÊ¿ä¾øÀ½
+        - DataTable, DataSet °´Ã¼¿¡ fill() ¸Þ¼­µå·Î ÀÚµ¿À¸·Î Ã¤¿öÁÜ
+        - °ÅÀÇ SELECT¹®¿¡¸¸ »ç¿ë
+    7. DBµ¥ÀÌÅÍ¸®´õ(`SqlDataReader`)
+        - DataReader : ExecuteReader()·Î °¡Á®¿Â µ¥ÀÌÅÍ¸¦ Á¶ÀÛÇÏ´Â °´Ã¼
+        - DataAdapter : Á» ´õ °£´ÜÇÏ°Ô µ¥ÀÌÅÍ¸¦ Ã³¸®ÇØÁÖ´Â °´Ã¼
+7. ½ÇÇà°á°ú
+    <img src="./image/wpf01.png">
+8. MahApps.Metro ¹æ½Ä ´ÙÀÌ¾ó·Î±× Ã³¸®
+    <img src="./image/wpf04.png">
+9. ÀüÅëÀûÀÎ C# À©¾Û°³¹ß°ú Â÷ÀÌ°¡ ¾øÀ½
+
+### WPF MVVM
+- [µðÀÚÀÎÆÐÅÏ](https://ko.wikipedia.org/wiki/%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4)
+    - ¼ÒÇÁÆ®¿þ¾î °øÇÐ¿¡¼­ °øÅëÀûÀ¸·Î ¹ß»ýÇÏ´Â ¹®Á¦¸¦ Àç»ç¿ë °¡´ÉÇÏ°Ô ÇØ°áÇÑ ¹æ½Äµé
+    - ¹Ýº¹ÀûÀ¸·Î µÇÇ®ÀÌµÇ´Â °³¹ßµðÀÚÀÎÀÇ ¹®Á¦¸¦ ÇØ°áÇÏµµ·Ï ¸ÂÃãÈ­½ÃÅ² ¾ç½Ä(ÅÛÇÃ¸´)
+    - ¿©·¯ µðÀÚÀÎÆÐÅÏ Áß ¾ÆÅ°ÅØÃÄÆÐÅÏ, ±× Áß µðÀÚÀÎ°ú °³¹ßÀ» ºÐ¸®ÇØ °³¹ßÇÒ ¼ö ÀÖ´Â ÆÐÅÏÀ» ÁØºñ
+    - MV* : MVC, MVP, MVVM...
+
+- MVC : Model-View-Controller ÆÐÅÏ
+    - »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º(View)¿Í ºñÁî´Ï½º ·ÎÁ÷(Controller, Model)ºÐ¸®ÇØ¼­ ¾ÛÀ» °³¹ß
+    - µðÀÚÀÌ³Ê¿¡°Ô ÃÖ¼ÒÇÑÀÇ °³¹ß¿¡ Âü¿©¸¦ ½ÃÅ´
+    - °³¹ßÀÚ´Â µðÀÚÀÎÀº °í·ÁÇÏÁö ¾Ê°í °³¹ß¸¸ ÇÒ ¼ö ÀÖÀ½
+    - »ç¿ëÀÚ´Â Controller¿¡°Ô ¿äÃ»
+    - Controller°¡ Model¿¡°Ô Data¸¦ ¿äÃ»
+    - ModelÀÌ DB¿¡ µ¥ÀÌÅÍ¸¦ °¡Á®¿Í Controller·Î Àü´Þ
+    - Controller´Â µ¥ÀÌÅÍ¸¦ ºñÁî´Ï½º·ÎÁ÷¿¡ µû¶ó¼­ Ã³¸®ÇÏ°í View·Î Àü´Þ
+    - View´Â µ¥ÀÌÅÍ¸¦ È­¸é¿¡ »Ñ·ÁÁÖ°í, È­¸é»ó¿¡ Ã³¸®ÇÒ °ÍÀ» ¸¶Ä£ ÈÄ »ç¿ëÀÚ¿¡°Ô ÀÀ´ä
+    - ±¸Á¶´Â º¹Àâ, °¢ ºÎºÐº° °³¹ßÄÚµå´Â °£°á
+    - Spring Boot, `ASP.NET`, Django µî À¥°³¹ß ¾ÆÅ°ÅØÃ³ÆÐÅÏÀ¸·Î Ç¥ÁØÀ¸·Î »ç¿ë
+    <img src='./image/wpf02.png'>
+
+- MVP : Model-View-Presenter ÆÐÅÏ
+    - MVC ÆÐÅÏ¿¡¼­ ÆÄ»ýµÊ
+    - Presenter : Supervising Controller¶ó°í ºÎ¸§
+
+- **MVVM** : Model-View-ViewModel ÆÐÅÏ
+    - MVC ÆÐÅÏ¿¡¼­ ÆÄ»ý
+    - ¸¶Å©¾÷¾ð¾î·Î GUIÄÚµå¸¦ ±¸ÇöÇÏ´Â ¾ÆÅ°ÅØÃ³
+    - »ç¿ëÀÚ´Â View·Î Á¢±Ù(MVC¿Í Â÷ÀÌÁ¡)
+    - ViewModelÀÌ Controller ¿ªÇÒ(ºñÁî´Ï½º·ÎÁ÷ Ã³¸®)
+    - ModelÀº ´ç¿¬È÷ DB¿äÃ», ÀÀ´ä
+    - ¿¬°á¹æ½ÄÀÌ MVC¿Í ´Ù¸§
+    - ÀüÅëÀûÀÎ C#¹æ½ÄÀº »ç¿ëÀÚ°¡ ÀÌº¥Æ®¹ß»ý½ÃÅ°±â ¶§¹®¿¡ ¹ß»ý½Ã±â¸¦ ¹Ù·Î ¾Ë ¼ö ÀÖÀ½
+    - MVVM ¹æ½ÄÀº C#ÀÌ º¯È­¸¦ ÁÖ½ÃÇÏ°í ÀÖ¾î¾ß ÇÔ. »óÅÂ°¡ ¹Ù²î¸é º¯È­¸¦ Áà¾ßÇÔ
+    <img src='./image/wpf03.png'>
+
+### WPF MVVM ¿¬½À
+1. ÇÁ·ÎÁ§Æ® »ý¼º - [µðÀÚÀÎ](./day01/Day01Wpf/WpfBasicApp02/View/MainView.xaml), [¼Ò½º](./day01/Day01Wpf/WpfBasicApp02/ViewModel/MainViewModel.cs)
+2. WPF DB¹ÙÀÎµù ¿¬½À½Ã »ç¿ëÇÑ UI ±×´ë·Î º¹»ç
+3. Model, View, ViewModel Æú´õ »ý¼º
+4. MainWindow.xamlÀ» View·Î ÀÌµ¿
+5. App.xaml StartupUri ¼öÁ¤
+6. ModelÆú´õ ³» BookÅ¬·¡½º »ý¼º
+    - INotifyPropertyChanged ÀÎÅÍÆäÀÌ½º : °´Ã¼³»ÀÇ ¾î¶°ÇÑ ¼Ó¼º°ªÀÌ º¯°æµÇ¸é »óÅÂ¸¦ C#¿¡°Ô ¾Ë·ÁÁÖ´Â ±â´É
+    - PropertyChangedEventHandler ÀÌº¥Æ® »ý¼º
+7. ViewModelÆú´õ ³» MainViewModelÅ¬·¡½º »ý¼º
