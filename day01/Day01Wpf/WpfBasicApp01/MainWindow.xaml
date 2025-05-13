@@ -26,7 +26,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Idx}" Header="순번" />
                 <DataGridTextColumn Binding="{Binding Division}" Header="장르" Visibility="Hidden" />
-                <DataGridTextColumn Binding="{Binding dNames}" Header="장르명" />
+                <DataGridTextColumn Binding="{Binding DNames}" Header="장르명" />
                 <DataGridTextColumn Binding="{Binding Names}" Header="책제목" />
                 <DataGridTextColumn Binding="{Binding Author}" Header="책저자" Visibility="Hidden" />
                 <DataGridTextColumn Binding="{Binding ReleaseDate, StringFormat='yyyy-MM-dd'}" Header="출판일" />

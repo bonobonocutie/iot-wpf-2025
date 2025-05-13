@@ -75,6 +75,14 @@ IoT 개발자 WPF 리포지토리
     - MVVM 방식은 C#이 변화를 주시하고 있어야 함. 상태가 바뀌면 변화를 줘야함
     <img src='./image/wpf03.png'>
 
+- MVVM 장단점
+    - View <-> ViewModel 간 데이터 자동 연동
+    - 로직 분리로 구조가 명확해짐. 자기할일만 하면 됨
+    - 팀으로 개발 시 역할분담이 확실. 팀프로젝트에 알맞음
+    - 테스트와 유지보수는 쉬움
+    - 구조가 복잡. 디버깅이 어려움
+    - 스케일이 커짐
+
 ### WPF MVVM 연습
 1. 프로젝트 생성 - [디자인](./day01/Day01Wpf/WpfBasicApp02/View/MainView.xaml), [소스](./day01/Day01Wpf/WpfBasicApp02/ViewModel/MainViewModel.cs)
 2. WPF DB바인딩 연습시 사용한 UI 그대로 복사
@@ -85,3 +93,178 @@ IoT 개발자 WPF 리포지토리
     - INotifyPropertyChanged 인터페이스 : 객체내의 어떠한 속성값이 변경되면 상태를 C#에게 알려주는 기능
     - PropertyChangedEventHandler 이벤트 생성
 7. ViewModel폴더 내 MainViewModel클래스 생성
+    - INotifyPropertyChanged 인터페이스 구현
+    - OnPropertyChanged 이벤트핸들러 메서드 코딩
+8. MainView.xaml에 ViewModel 연결
+    ```xml
+    ...
+        xmlns:vm="clr-namespace:WpfBasicApp02.ViewModel"
+        DataContext="{DynamicResource MainVM}"
+        mc:Ignorable="d"
+        Title="MahApps DB연동(MVVM)" Height="350" Width="600">
+    <mah:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <iconPacks:PackIconMaterial Kind="DatabaseCog" Margin="10,7,0,0" Foreground="White" />
+        </DataTemplate>
+    </mah:MetroWindow.IconTemplate>
+    <mah:MetroWindow.Resources>
+        <!-- MainViewModel을 가져와서 사용하겠다!! -->
+        <vm:MainViewModel x:Key="MainVM" />
+    </mah:MetroWindow.Resources>
+    ```
+9. MainView.xaml 컨트롤에 바인딩 작업
+    - 전통적인 C# 방식 - x:Name 사용(비하인드 사용필요), 마우스이벤트 추가
+    ```xml
+    <!-- UI 컨트롤 구성 -->
+    <DataGrid x:Name="GrdBooks" 
+            Grid.Row="0" Grid.Column="0" Margin="5" 
+            AutoGenerateColumns="False" IsReadOnly="True" 
+            MouseDoubleClick="GrdBooks_MouseDoubleClick">
+        <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding Idx}" Header="순번" />
+    ```
+
+    - WPF MVVM 바인딩 방식 - 전부 Binding 사용
+    ```xml
+    <!-- UI 컨트롤 구성 -->
+    <DataGrid Grid.Row="0" Grid.Column="0" Margin="5" 
+            AutoGenerateColumns="False" IsReadOnly="True"
+            ItemsSource="{Binding Books}"
+            SelectedItem="{Binding SelectedBook, Mode=TwoWay}">
+        <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding Idx}" Header="순번" />
+    ```
+10. 실행결과
+    <img src='./image/wpf05.png'>
+
+## 2일차
+### MVVM Framework
+- MVVM 개발자체가 어려움. 초기 개발시 MVVM 템플릿을 만드는데 시간이 많이 소요. 난이도 있음
+- 조금 쉽게 개발하고자 3rd Party에서 개발한 MVVM 프레임워크 사용
+- 종류
+    - `Prism` : MS계열에서 직접 개발. 대규모 앱 개발시 사용. 모듈화잘되어 있음. 커뮤니티 활발
+        - 진입장벽 높음
+    - `Caliburn.Micro` : 경량화된 프레임워크. 쉽게 개발할 수 있음. Xaml 바인딩 생략가능. 커뮤니티 주는추세
+        - [공식사이트](https://caliburnmicro.com/)
+        - [Github](https://github.com/Caliburn-Micro/Caliburn.Micro)
+        - MahApps.Metro에서 사용 중
+        - 디버깅이 어려움
+        - [문제]MahApps.Metro의 메시지박스 다이얼로그가 구현이 안됨!!
+    - `MVVM Light Toolkit` : 가장 가벼운 MVVM 입문용. 쉬운 Command 지원. 개발종료.
+        - 확장성이 떨어짐
+    - CommunityTooklit.Mvvm : MS 공식 경량MVVM. 단순,빠름. 커뮤니티등 매우 활발
+        - NotifyPropertyChanged를 사용할 필요없음
+        - 모듈기능이 없음
+    - ReactiveUI : 최신기술 Rx기반 MVVM. 비동기,스트림처리 강력. 커뮤니티가 활발.
+        - 진입장벽이 높음
+### Caliburn.Micro 학습
+1. WPF 프로젝트 생성
+2. NuGet 패키지 Caliburn.Micro 검색 후 설치
+3. App.xaml StartupUri를 삭제 - [소스](./day02/Day02Wpf/WpfBasicApp01/App.xaml)
+4. Models, Views, ViewModels 폴더(이름이 똑같아야 함) 생성
+5. MainViewModel 클래스 생성 - [소스](./day02/Day02Wpf/WpfBasicApp01/ViewModels/MainViewModel.cs)
+    - MainView의 속하는 ViewModel은 반드시 MainViewModel라는 이름을 써야함
+6. MainWindow.xaml을 View 이동
+7. MainWindow를 MainView로 이름 변경
+8. Bootstrapper 클래스 생성, 작성 - [소스](./day02/Day02Wpf/WpfBasicApp01/Bootstrapper.cs)
+9. App.xaml에서 Resource 추가
+10. MahApps.Metro UI 적용
+    <img src='./image/wpf06.png'>
+
+### Caliburn.Micro MVVM 연습
+1. WPF 프로젝트 생성
+2. 필요 라이브러리 설치
+    - Caliburn.Micro
+    - MahApps.Metro
+    - MahApps.Metro.IconPacks
+    - MySQL.Data
+3. Models, Views, ViewModels로 폴더 생성
+4. 이전작업 소스코드 복사, 네임스페이스 변경
+    <img src='./image/wpf07.png'>
+
+## 3일차
+### CommunityToolkit.Mvmm 다시
+1. Wpf프로젝트 생성
+2. 필요 라이브러리 설치
+    - CommunityToolkit.Mvvm
+    - MahApps.Metro
+    - MahApps.Metro.IconPacks
+3. Models, Views, ViewModels 폴더 생성
+4. MainWindow.xaml 삭제
+5. App.xaml StartupUri 도 삭제
+6. Views/MainView.xaml 생성
+7. ViewModels/MainViewModel.cs 생성
+8. App.xaml Startup 이벤트 추가
+    - App.xaml.cs 로직 추가
+9. App.xaml MahApps.Metro 관련 리소스 추가
+10. MainView에 MetroWindow로 변경
+    <img src='./image/wpf08.png'>
+
+### Log 라이브러리
+- 개발한 앱, 솔루션의 현재상태를 계속 모니터링하는 기능
+- Log 사용법
+    - 직접 코딩 방식
+    - 로그 라이브러리 사용방식
+- Log 라이브러리
+    - **NLog** : 가볍고 쉽다. 빠름. 데스크톱
+    - Serilog : 어려운 편, 빠름. 웹쪽
+    - Log4net : Java의 로그를 .NET으로 이전. 느림. 웹쪽
+    - `ZLogger` : 제일 최신(2021), 초고속. 게임서버
+
+### NLog 라이브러리 사용
+1. NuGet패키지 > NLog, NLog.Schema 설치
+2. 새항목 > XML파일 > NLog.config 생성
+3. Info < `Debug` < Warn < Error < Fatal
+4. `NLog.config`를 출력 디렉토리로 복사
+5. Debug, Trace는 출력이 안됨
+6. Info, Warn, Error, Fatal 을 사용
+    <img src='./image/wpf09.png'>
+
+### DB연결 CRUD 연습
+1. WPF프로젝트 생성
+2. NuGet 패키지 필요라이브러리 설치
+    - CommunityToolkit.Mvvm
+    - MahApps.Metro / MahApps.Metro.IconPacks
+    - MySql.Data
+    - NLog
+3. Models, Views, ViewModels 생성
+4. App.xaml 초기화 작업
+5. MainView.xaml, MainViewModel 메인화면 MVVM 작업
+    - 메뉴작업
+    - ContentControl 추가
+6. 하위 사용자컨트롤 작업
+    - BookGenre(View, ViewModel)
+    - Books(View, ViewModel)
+7. Models > Genre(DivisionTbl) 모델 작업
+8. BookGenreViewModel DB처리 구현
+
+## 4일차
+### DB연결 CRUD 연습(계속)
+1. BookGenre에서 INSERT, UPDATE 기능 구현
+2. NLog.config 생성
+3. Helpers.Common 클래스 생성
+    - NLog 인스턴스 생성
+    - 공통 DB연결문자열 생성
+    - MahApps.Metro 다이얼로그 코디네이터 생성
+4. 각 ViewModel에 IDialogCoordinator 관련 코딩 추가
+    - ViewModel 생성자에 파라미터 추가
+    - View, ViewModel 연동시 IDialogCoordinator 연결
+5. View에 Dialog관련 네임스페이스, 속성 추가
+6. await this.dialogCoordinator.ShowMessageAsync() 사용
+    <img src='./image/wpf11.png'>
+7. BookView.xaml 화면작업
+8. MemberView.xaml, RentalView.xaml 화면작업
+9. ViewModel들 작업
+    <img src='./image/wpf12.png'>
+
+### DB연결 CRUD 연습시 추가 필요사항
+- [x] 여러번 나오는 로직 메서드화
+- [x] NLog로 각 기능 동작시 로그남기기. 공통화작업
+- [x] 연결문자열 Common으로 이전
+- [x] 종료 메뉴 다이얼로그 MetroUI로 변경
+- [x] MahApps.Metro 메시지형태로 변경
+- [x] 삭제여부 메시지박스 추가
+
+### DB연결 CRUD 실습
+- BooksView, BooksViewModel 작업 실습
+- 1일차 MVVM 내용, 오늘 학습한것
