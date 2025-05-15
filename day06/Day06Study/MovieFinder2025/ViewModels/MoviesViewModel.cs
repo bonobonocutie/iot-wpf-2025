@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
 using MovieFinder2025.Helpers;
 using MovieFinder2025.Models;
+using MovieFinder2025.Views;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
 using System;
@@ -19,6 +20,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace MovieFinder2025.ViewModels
@@ -166,6 +168,7 @@ namespace MovieFinder2025.ViewModels
                 sb.Append($"평점 : {currMovie.Vote_average.ToString("F2")}\n\n");
                 sb.Append(currMovie.Overview);
 
+                Common.LOGGER.Info($"{currMovie.Title} 상세정보 확인");
                 await this.dialogCoordinator.ShowMessageAsync(this, currMovie.Title, sb.ToString());
             }
         }
@@ -211,6 +214,7 @@ namespace MovieFinder2025.ViewModels
 
                     if(resultCnt > 0)
                     {
+                        Common.LOGGER.Info($"{SelectedMovieItem.Title} 즐겨찾기 추가");
                         await this.dialogCoordinator.ShowMessageAsync(this, "즐겨찾기 추가", "즐겨찾기 성공");
                     }
                     else
@@ -219,17 +223,22 @@ namespace MovieFinder2025.ViewModels
                     }
                 }
             }
-            catch(Exception ex)
+            catch(MySqlException ex)
             {
                 if (ex.Message.ToUpper().Contains("DUPLICATE ENTRY"))
                 {
+                    Common.LOGGER.Info($"{SelectedMovieItem.Title} 이미 추가된 즐겨찾기");
                     await this.dialogCoordinator.ShowMessageAsync(this, "즐겨찾기 추가", "이미 추가된 즐겨찾기입니다.");
                 }
                 else
                 {
                     await this.dialogCoordinator.ShowMessageAsync(this, "오류", ex.Message);
                 }
-
+                Common.LOGGER.Fatal(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                await this.dialogCoordinator.ShowMessageAsync(this, "오류", ex.Message);
                 Common.LOGGER.Fatal(ex.Message);
             }
         }
@@ -276,6 +285,8 @@ namespace MovieFinder2025.ViewModels
                 }
 
                 MovieItems = movieItems;
+                SearchResult = $"즐겨찾기검색 건수 : {MovieItems.Count}건";
+                Common.LOGGER.Info(SearchResult + " 검색완료!!");
             }
             catch (Exception ex)
             {
@@ -291,7 +302,7 @@ namespace MovieFinder2025.ViewModels
 
             if (SelectedMovieItem == null)
             {
-                await this.dialogCoordinator.ShowMessageAsync(this, "즐겨찾기 추가", "추가할 영화를 선택하세요.");
+                await this.dialogCoordinator.ShowMessageAsync(this, "즐겨찾기 삭제", "삭제할 영화를 선택하세요.");
                 return;
             }
 
@@ -309,6 +320,7 @@ namespace MovieFinder2025.ViewModels
 
                     if(resultCnt > 0)
                     {
+                        Common.LOGGER.Info($"{SelectedMovieItem.Title} 즐겨찾기 삭제");
                         await this.dialogCoordinator.ShowMessageAsync(this, "즐겨찾기 삭제", "즐겨찾기 삭제 성공");
                     }
                     else
@@ -329,7 +341,26 @@ namespace MovieFinder2025.ViewModels
         [RelayCommand]
         public async Task AddMovieTrailer()
         {
-            await this.dialogCoordinator.ShowMessageAsync(this, "예고편 보기", "즐겨찾기 확인합니다!");
+            //await this.dialogCoordinator.ShowMessageAsync(this, "예고편 보기", "즐겨찾기 확인합니다!");
+            if (SelectedMovieItem == null)
+            {
+                await this.dialogCoordinator.ShowMessageAsync(this, "예고편 보기", "영화를 선택하세요.");
+                return;
+            }
+
+            var movieTitle = SelectedMovieItem.Title;
+
+            var viewModel = new TrailerViewModel(Common.DIALOGCOORDINATOR, movieTitle);
+            viewModel.MovieTitle = movieTitle;
+            var view = new TrailerView
+            {
+                DataContext = viewModel
+            };
+            view.Owner = Application.Current.MainWindow; // 부모창의 중앙에 위치
+
+            Common.LOGGER.Info($"{SelectedMovieItem.Title} 유튜브 트레일러 실행");
+            view.ShowDialog();
         }
+
     }
 }
