@@ -34,17 +34,10 @@ IoT 개발자 WPF 리포지토리
     7. DB데이터리더(`SqlDataReader`)
         - DataReader : ExecuteReader()로 가져온 데이터를 조작하는 객체
         - DataAdapter : 좀 더 간단하게 데이터를 처리해주는 객체
-<<<<<<< Updated upstream
 7. 실행결과  
     <img src="./image/wpf01.png">
 8. MahApps.Metro 방식 다이얼로그 처리  
-=======
-7. 실행결과
-    <img src="./image/wpf01.png">
-8. MahApps.Metro 방식 다이얼로그 처리
->>>>>>> Stashed changes
-    <img src="./image/wpf04.png">
-9. 전통적인 C# 윈앱개발과 차이가 없음
+
 
 ### WPF MVVM
 - [디자인패턴](https://ko.wikipedia.org/wiki/%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4_%EB%94%94%EC%9E%90%EC%9D%B8_%ED%8C%A8%ED%84%B4)
@@ -63,11 +56,7 @@ IoT 개발자 WPF 리포지토리
     - Controller는 데이터를 비즈니스로직에 따라서 처리하고 View로 전달
     - View는 데이터를 화면에 뿌려주고, 화면상에 처리할 것을 마친 후 사용자에게 응답
     - 구조는 복잡, 각 부분별 개발코드는 간결
-<<<<<<< Updated upstream
     - Spring Boot, `ASP.NET`, Django 등 웹개발 아키텍처패턴으로 표준으로 사용  
-=======
-    - Spring Boot, `ASP.NET`, Django 등 웹개발 아키텍처패턴으로 표준으로 사용
->>>>>>> Stashed changes
     <img src='./image/wpf02.png'>
 
 - MVP : Model-View-Presenter 패턴
@@ -82,11 +71,7 @@ IoT 개발자 WPF 리포지토리
     - Model은 당연히 DB요청, 응답
     - 연결방식이 MVC와 다름
     - 전통적인 C#방식은 사용자가 이벤트발생시키기 때문에 발생시기를 바로 알 수 있음
-<<<<<<< Updated upstream
     - MVVM 방식은 C#이 변화를 주시하고 있어야 함. 상태가 바뀌면 변화를 줘야함  
-=======
-    - MVVM 방식은 C#이 변화를 주시하고 있어야 함. 상태가 바뀌면 변화를 줘야함
->>>>>>> Stashed changes
     <img src='./image/wpf03.png'>
 
 - MVVM 장단점
@@ -148,11 +133,7 @@ IoT 개발자 WPF 리포지토리
         <DataGrid.Columns>
             <DataGridTextColumn Binding="{Binding Idx}" Header="순번" />
     ```
-<<<<<<< Updated upstream
 10. 실행결과  
-=======
-10. 실행결과
->>>>>>> Stashed changes
     <img src='./image/wpf05.png'>
 
 ## 2일차
@@ -186,11 +167,7 @@ IoT 개발자 WPF 리포지토리
 7. MainWindow를 MainView로 이름 변경
 8. Bootstrapper 클래스 생성, 작성 - [소스](./day02/Day02Wpf/WpfBasicApp01/Bootstrapper.cs)
 9. App.xaml에서 Resource 추가
-<<<<<<< Updated upstream
 10. MahApps.Metro UI 적용  
-=======
-10. MahApps.Metro UI 적용
->>>>>>> Stashed changes
     <img src='./image/wpf06.png'>
 
 ### Caliburn.Micro MVVM 연습
@@ -201,11 +178,7 @@ IoT 개발자 WPF 리포지토리
     - MahApps.Metro.IconPacks
     - MySQL.Data
 3. Models, Views, ViewModels로 폴더 생성
-<<<<<<< Updated upstream
 4. 이전작업 소스코드 복사, 네임스페이스 변경  
-=======
-4. 이전작업 소스코드 복사, 네임스페이스 변경
->>>>>>> Stashed changes
     <img src='./image/wpf07.png'>
 
 ## 3일차
@@ -280,7 +253,6 @@ IoT 개발자 WPF 리포지토리
     - ViewModel 생성자에 파라미터 추가
     - View, ViewModel 연동시 IDialogCoordinator 연결
 5. View에 Dialog관련 네임스페이스, 속성 추가
-<<<<<<< Updated upstream
 6. await this.dialogCoordinator.ShowMessageAsync() 사용  
     <img src='./image/wpf11.png'>
 7. BookView.xaml 화면작업
@@ -347,7 +319,6 @@ MovieFinder 2025
     - NuGet 패키지에서 Microsoft.Xaml.Behaviors.Wpf 설치
 8. 텍스트박스에서 엔터시 이벤트 발생 처리
 9. 텍스트박스 한글 입력 우선 처리
-<<<<<<< Updated upstream
 10. 실행시 텍스트박스에 포커스 가도록 처리
 
 
