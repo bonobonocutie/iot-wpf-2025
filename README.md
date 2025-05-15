@@ -342,4 +342,8 @@ MovieFinder 2025
     4. CefSharp.Wpf 설치 시 프로젝트 속성>빌드>일반, 플랫폼 대상을 Any CPU에서 x64로 변경!!
     5. NuGet 패키지 - Google.Apis.YouTube.v3 설치
 6. 기타 작업 완료
-7. 결과 화면  
+7. 결과 화면
+
+
+   https://github.com/user-attachments/assets/e55bf81b-7190-48c4-bb3a-ce278295a636
+
