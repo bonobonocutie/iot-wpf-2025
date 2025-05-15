@@ -223,11 +223,7 @@ IoT 개발자 WPF 리포지토리
 8. App.xaml Startup 이벤트 추가
     - App.xaml.cs 로직 추가
 9. App.xaml MahApps.Metro 관련 리소스 추가
-<<<<<<< Updated upstream
 10. MainView에 MetroWindow로 변경  
-=======
-10. MainView에 MetroWindow로 변경
->>>>>>> Stashed changes
     <img src='./image/wpf08.png'>
 
 ### Log 라이브러리
@@ -247,11 +243,7 @@ IoT 개발자 WPF 리포지토리
 3. Info < `Debug` < Warn < Error < Fatal
 4. `NLog.config`를 출력 디렉토리로 복사
 5. Debug, Trace는 출력이 안됨
-<<<<<<< Updated upstream
 6. Info, Warn, Error, Fatal 을 사용  
-=======
-6. Info, Warn, Error, Fatal 을 사용
->>>>>>> Stashed changes
     <img src='./image/wpf09.png'>
 
 ### DB연결 CRUD 연습
@@ -272,13 +264,10 @@ IoT 개발자 WPF 리포지토리
 7. Models > Genre(DivisionTbl) 모델 작업
 8. BookGenreViewModel DB처리 구현
 
-<<<<<<< Updated upstream
 
     https://github.com/user-attachments/assets/17fb0c93-0178-41d4-a9cb-aa968b5f4761
 
 
-=======
->>>>>>> Stashed changes
 ## 4일차
 ### DB연결 CRUD 연습(계속)
 1. BookGenre에서 INSERT, UPDATE 기능 구현
@@ -297,13 +286,6 @@ IoT 개발자 WPF 리포지토리
 7. BookView.xaml 화면작업
 8. MemberView.xaml, RentalView.xaml 화면작업
 9. ViewModel들 작업  
-=======
-6. await this.dialogCoordinator.ShowMessageAsync() 사용
-    <img src='./image/wpf11.png'>
-7. BookView.xaml 화면작업
-8. MemberView.xaml, RentalView.xaml 화면작업
-9. ViewModel들 작업
->>>>>>> Stashed changes
     <img src='./image/wpf12.png'>
 
 ### DB연결 CRUD 연습시 추가 필요사항
@@ -320,11 +302,7 @@ IoT 개발자 WPF 리포지토리
 
 ## 5일차
 ### MovieFinder 2025
-<<<<<<< Updated upstream
 - 전체 UI : 다섯영역으로 구분  
-=======
-- 전체 UI : 다섯영역으로 구분
->>>>>>> Stashed changes
     <img src='./image/wpf14.png'>
 
 - 영화즐겨찾기앱
@@ -359,11 +337,7 @@ MovieFinder 2025
     - NLog
 3. 폴더생성 : Helpers, Models, Views, ViewModels
 4. MVVM 구조 초기작업
-<<<<<<< Updated upstream
 5. UI 구현  
-=======
-5. UI 구현
->>>>>>> Stashed changes
     <img src='./image/wpf15.png'>
 
 6. TMDB API 사용 구현
@@ -379,6 +353,3 @@ MovieFinder 2025
 
     https://github.com/user-attachments/assets/9369f711-b7ec-4962-8626-a3f249d1ebc6
 
-=======
-10. 실행시 텍스트박스에 포커스 가도록 처리
->>>>>>> Stashed changes
