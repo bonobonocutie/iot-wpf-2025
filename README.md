@@ -370,6 +370,10 @@ MovieFinder 2025
 3. CefSharp.Wpf로 구글맵지도 표현
 4. 위도(Latitude), 경도(Longtitude) 표현
 
+
+    https://github.com/user-attachments/assets/0c42a641-ebc0-4ee6-b4b4-4afb72c3c995
+
+
 ### 스마트홈 연동 모니터링 앱  
 - 전면부  
 <img src='./image/wpf18.jpg'>
@@ -416,6 +420,10 @@ MovieFinder 2025
     - CONNECT
 
 5. VS Code에서 [MqttPub.py](./day08/Day08Study/Pythons/MqttPub.py) 파일 생성
+
+
+    https://github.com/user-attachments/assets/cb73fa2b-2332-414e-b245-7d3d0ab91de4
+
 
 ### 스마트홈 프로젝트 시작
 1. 화면 UI 변경
