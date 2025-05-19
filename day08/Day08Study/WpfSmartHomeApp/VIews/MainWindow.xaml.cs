@@ -1,7 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using WpfSmartHomeApp.ViewModels;
 
-namespace WpfSmartHomeApp
+namespace WpfSmartHomeApp.views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -30,7 +31,16 @@ namespace WpfSmartHomeApp
 
         private void window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            e.Cancel = true;
+            // 제목표시줄 X버튼 누를때, Alt+F4 누를 때 발생하는 이벤트
+            e.Cancel = true; // 앱종료 막는 기능
+        }
+
+        private void window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if(DataContext is MainViewModel vm)
+            {
+                vm.LoadedCommand.Execute(null);
+            }
         }
     }
 }

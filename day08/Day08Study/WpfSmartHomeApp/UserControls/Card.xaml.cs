@@ -24,7 +24,9 @@ namespace WpfSmartHomeApp.UserControls
         {
             InitializeComponent();
         }
-
+        
+        // 원래없는 속성을 사용자가 추가하는 방법
+        // 의존속성
         public string Title
         {
             get { return (string)GetValue(TitleProperty); }
