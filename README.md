@@ -362,3 +362,24 @@ MovieFinder 2025
     - NLog
 4. MVVM 초기화
 5. UI 디자인 및 구현
+
+## 8일차
+### 부산광역시 부산맛집 정보앱
+1. 그리드 표현 아이템 조정
+2. 메인창내용을 구글맵창으로 이동
+3. CefSharp.Wpf로 구글맵지도 표현
+4. 위도(Latitude), 경도(Longtitude) 표현
+
+
+### 스마트홈 연동 모니터링 앱  
+<img src='./image/wpf20.png'>
+
+- 전면부  
+<img src='./image/wpf18.png'>
+
+- 후면부
+
+- [개발링크](https://github.com/hugoMGSung/hungout-with-arduino/tree/main/SmartHomeDIY)
+
+1. Arduino + Raspberry Pi 스마트홈 기제작
+2. Mqtt 데이터전송 기술
