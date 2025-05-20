@@ -376,10 +376,10 @@ MovieFinder 2025
 
 ### 스마트홈 연동 모니터링 앱  
 - 전면부  
-<img src='./image/wpf18.jpg'>
+    <img src='./image/wpf18.jpg'>
 
 - 후면부  
-<img src='./image/wpf19.jpg'>
+    <img src='./image/wpf19.jpg'>
 
 - [개발링크](https://github.com/hugoMGSung/hungout-with-arduino/tree/main/SmartHomeDIY)
 
@@ -465,3 +465,7 @@ SELECT * FROM information_schema.processlist LIMIT 10; -- 데이터가 10건 이
 ```
 5. WPF MVVM 전체구현
 6. MqttPub.py와 Publish된 IoT데이터 WPF에서 Subscribe 예제
+   
+
+    https://github.com/user-attachments/assets/a0b78b0d-3f71-4fac-9631-f92b1354cd24
+
