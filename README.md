@@ -493,4 +493,13 @@ SELECT * FROM information_schema.processlist LIMIT 10; -- 데이터가 10건 이
 - MQTT 센서 데이터로 동작용 변수 값 할당
 - 실행화면
     - 스마트홈 조작영상
+      
+
+        https://github.com/user-attachments/assets/93fc85fd-a076-4ccb-9fdd-d8c229975e0a
+
+
     - 스마트홈 모니터링앱 동작영상
+      
+
+        https://github.com/user-attachments/assets/69c3f55a-b13b-4a81-ad30-96712fc968c7
+
