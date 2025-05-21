@@ -469,3 +469,28 @@ SELECT * FROM information_schema.processlist LIMIT 10; -- 데이터가 10건 이
 
     https://github.com/user-attachments/assets/a0b78b0d-3f71-4fac-9631-f92b1354cd24
 
+
+## 10일차
+### 스마트홈 연동 모니터링 앱
+#### 스마트홈 기기 실제 IoT센서데이터 모니터링 앱
+- 9일차 작성한 MQTT Subscribe 앱
+- SmartHome MQTT Json Key값
+    - L : Light 전등
+    - R : Rain(Water Drop Sensor)
+    - T : Temperature 온도
+    - H : Humidity 습도
+    - F : Fan 선풍기/에어컨
+    - V : Human Detection 칩입감지
+    - RL : Real Light 실제전등 켜짐 여부
+    - CB : ChaimBell 벨푸시 여부
+
+#### 스마트홈 WPF 실시간 시각화
+- NuGet 패키지
+    - MQTTnet
+    - Newtonsoft.Json
+    - NLog
+- WpfMqttSubApp.Models의 SensingInfo.cs 가져오기
+- MQTT 센서 데이터로 동작용 변수 값 할당
+- 실행화면
+    - 스마트홈 조작영상
+    - 스마트홈 모니터링앱 동작영상
